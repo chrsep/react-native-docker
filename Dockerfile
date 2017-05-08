@@ -13,8 +13,10 @@ RUN apt install -y default-jdk \
                    tar \
                    unzip \
                    lib32stdc++6 \
-                   lib32z1
+                   lib32z1 \
+                   ruby-dev
 RUN npm install -g react-native-cli yarn
+RUN gem install fastlane
 
 RUN wget --quiet --output-document=android-sdk.tgz https://dl.google.com/android/android-sdk_r${ANDROID_SDK_TOOLS}-linux.tgz && \
     tar --extract --gzip --file=android-sdk.tgz && \
