@@ -4,19 +4,20 @@ ENV ANDROID_COMPILE_SDK "23"
 ENV ANDROID_BUILD_TOOLS "23.0.1"
 ENV ANDROID_SDK_TOOLS "24.4.1"
 
+RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh && \
+    bash nodesource_setup.sh
+
 RUN apt-get update
-RUN  apt-get install -y default-jdk \
-                   nodejs \
-                   npm \
-                   curl \
-                   wget \
-                   tar \
-                   unzip \
-                   lib32stdc++6 \
-                   lib32z1 \
-                   ruby-dev \
-                   rubygems \
-          && apt-get clean
+RUN apt-get install -y default-jdk \
+                       nodejs \
+                       wget \
+                       tar \
+                       unzip \
+                       lib32stdc++6 \
+                       lib32z1 \
+                       ruby-dev \
+                       rubygems \
+    && apt-get clean
 
 RUN npm install -g react-native-cli yarn && npm cache clean -g
 RUN gem install fastlane
