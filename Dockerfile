@@ -4,7 +4,7 @@ ENV ANDROID_COMPILE_SDK "23"
 ENV ANDROID_BUILD_TOOLS "23.0.1"
 ENV ANDROID_SDK_TOOLS "24.4.1"
 
-RUN apt-get update && apt-get install curl && apt-get clean
+RUN apt-get update && apt-get install -y curl && apt-get clean
 RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh
 
