@@ -5,7 +5,8 @@ ENV ANDROID_BUILD_TOOLS "23.0.1"
 ENV ANDROID_SDK_TOOLS "24.4.1"
 
 RUN apt update && apt upgrade -y
-RUN apt-get install -y default-jdk \
+RUN apt-get install openjdk-7-jre && \ 
+          apt-get install -y default-jdk \
                    nodejs \
                    npm \
                    curl \
