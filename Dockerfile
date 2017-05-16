@@ -15,7 +15,7 @@ RUN  apt-get install -y default-jdk \
                    lib32stdc++6 \
                    lib32z1 \
                    ruby-dev \
-          && sudo apt-get clean
+          && apt-get clean
 
 RUN npm install -g react-native-cli yarn && npm cache clean -g
 RUN gem install fastlane
