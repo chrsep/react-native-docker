@@ -17,7 +17,7 @@ RUN apt-get install -y default-jdk \
                    ruby-dev \
           && sudo apt-get clean
 
-RUN npm install -g react-native-cli yarn
+RUN npm install -g react-native-cli yarn && npm cache clean -g
 RUN gem install fastlane
 
 RUN wget --quiet --output-document=android-sdk.tgz https://dl.google.com/android/android-sdk_r${ANDROID_SDK_TOOLS}-linux.tgz && \
