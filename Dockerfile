@@ -4,6 +4,7 @@ ENV ANDROID_COMPILE_SDK "23"
 ENV ANDROID_BUILD_TOOLS "23.0.1"
 ENV ANDROID_SDK_TOOLS "24.4.1"
 
+RUN apt-get update
 RUN  apt-get install -y default-jdk \
                    nodejs \
                    npm \
