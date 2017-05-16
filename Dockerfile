@@ -17,7 +17,8 @@ RUN apt-get install -y default-jdk \
                        lib32stdc++6 \
                        lib32z1 \
                        ruby \
-                       ruby-devel \
+                       gcc \
+                       ruby-dev \
                        rubygems \
     && apt-get clean
 
