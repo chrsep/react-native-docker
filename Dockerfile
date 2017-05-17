@@ -1,23 +1,10 @@
-FROM debian:latest
+FROM alpine:3.5
 
 ENV ANDROID_COMPILE_SDK "23"
 ENV ANDROID_BUILD_TOOLS "23.0.1"
 ENV ANDROID_SDK_TOOLS "24.4.1"
 
-RUN apt-get update && apt-get install -y curl && apt-get clean
-RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh && \
-    bash nodesource_setup.sh
-
-RUN apt-get update
-RUN apt-get install -y oracle-java8-installer\
-                       nodejs \
-                       wget \
-                       tar \
-                       unzip \
-                       lib32stdc++6 \
-                       lib32z1 \
-                       ruby \
-    && apt-get clean
+RUN apk add --no-cache openjdk8 nodejs wget unzip tar
 
 RUN npm install -g react-native-cli yarn && npm cache clean -g
 
