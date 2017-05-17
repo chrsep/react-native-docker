@@ -4,9 +4,13 @@ ENV ANDROID_COMPILE_SDK "23"
 ENV ANDROID_BUILD_TOOLS "23.0.1"
 ENV ANDROID_SDK_TOOLS "24.4.1"
 
-RUN apk add --no-cache openjdk8 nodejs wget unzip tar
+ENV ANDROID_HOME=$PWD/android-sdk-linux
+ENV PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
 
-RUN npm install -g react-native-cli yarn && npm cache clean -g
+RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories
+RUN apk add --no-cache openjdk8 nodejs wget unzip tar yarn
+
+RUN yarn global add react-native-cli
 
 RUN wget --quiet --output-document=android-sdk.tgz https://dl.google.com/android/android-sdk_r${ANDROID_SDK_TOOLS}-linux.tgz && \
     tar --extract --gzip --file=android-sdk.tgz && \
@@ -20,5 +24,4 @@ RUN echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all -
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-google_play_services && \
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-m2repository
 
-ENV ANDROID_HOME=$PWD/android-sdk-linux
-ENV PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
+RUN apk del wget unzip tar
