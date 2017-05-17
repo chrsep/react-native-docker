@@ -19,6 +19,8 @@ RUN apt-get install -y default-jdk \
                        ruby \
                        gcc \
                        make \
+                       build-essential \
+                       g++ \
                        ruby-dev \
                        rubygems \
     && apt-get clean
