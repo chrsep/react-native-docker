@@ -25,4 +25,3 @@ RUN echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all -
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-m2repository
 
 RUN apk del wget unzip tar
-RUN ln -s /usr/bin/nodejs /usr/bin/node
