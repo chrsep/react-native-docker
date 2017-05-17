@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM debian:jessie
 
 ENV ANDROID_COMPILE_SDK "23"
 ENV ANDROID_BUILD_TOOLS "23.0.1"
@@ -7,10 +7,14 @@ ENV ANDROID_SDK_TOOLS "24.4.1"
 ENV ANDROID_HOME=$PWD/android-sdk-linux
 ENV PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
 
+RUN apt-get update && apt-get install -y curl
+
+RUN echo 'deb http://http.debian.net/debian jessie-backports main' >> /etc/apt/sources.list
 RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh
 
 RUN apt-get update
+RUN apt-get install -t jessie-backports -y openjdk-8-jdk
 RUN apt-get install -y nodejs \
                        wget \
                        tar \
