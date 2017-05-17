@@ -7,15 +7,11 @@ ENV ANDROID_SDK_TOOLS "24.4.1"
 ENV ANDROID_HOME=$PWD/android-sdk-linux
 ENV PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
 
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-
-RUN apt-get update && apt-get install -y curl && apt-get clean
 RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh
 
 RUN apt-get update
-RUN apt-get install -y default-jdk \
-                       nodejs \
+RUN apt-get install -y nodejs \
                        wget \
                        tar \
                        unzip \
@@ -23,7 +19,7 @@ RUN apt-get install -y default-jdk \
                        lib32z1 \
     && apt-get clean
 
-RUN yarn global add react-native-cli
+RUN npm install -g react-native-cli yarn && npm cache clean -g
 
 RUN wget --quiet --output-document=android-sdk.tgz https://dl.google.com/android/android-sdk_r${ANDROID_SDK_TOOLS}-linux.tgz && \
     tar --extract --gzip --file=android-sdk.tgz && \
