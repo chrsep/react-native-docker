@@ -9,7 +9,7 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh
 
 RUN apt-get update
-RUN apt-get install -y default-jdk \
+RUN apt-get install -y oracle-java8-installer\
                        nodejs \
                        wget \
                        tar \
