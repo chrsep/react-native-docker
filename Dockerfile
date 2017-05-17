@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM openjdk:8-jdk
 
 ENV ANDROID_COMPILE_SDK "23"
 ENV ANDROID_BUILD_TOOLS "23.0.1"
@@ -7,8 +7,21 @@ ENV ANDROID_SDK_TOOLS "24.4.1"
 ENV ANDROID_HOME=$PWD/android-sdk-linux
 ENV PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
 
-RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories
-RUN apk add --no-cache openjdk8 nodejs wget unzip tar yarn bash
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update && apt-get install -y curl && apt-get clean
+RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh && \
+    bash nodesource_setup.sh
+
+RUN apt-get update
+RUN apt-get install -y default-jdk \
+                       nodejs \
+                       wget \
+                       tar \
+                       unzip \
+                       lib32stdc++6 \
+                       lib32z1 \
+    && apt-get clean
 
 RUN yarn global add react-native-cli
 
@@ -23,5 +36,3 @@ RUN echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all -
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-android-m2repository && \
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-google_play_services && \
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-m2repository
-
-RUN apk del wget unzip tar
