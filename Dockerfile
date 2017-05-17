@@ -8,7 +8,7 @@ ENV ANDROID_HOME=$PWD/android-sdk-linux
 ENV PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
 
 RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories
-RUN apk add --no-cache openjdk8 nodejs wget unzip tar yarn
+RUN apk add --no-cache openjdk8 nodejs wget unzip tar yarn bash
 
 RUN yarn global add react-native-cli
 
@@ -25,3 +25,4 @@ RUN echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all -
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-m2repository
 
 RUN apk del wget unzip tar
+RUN ln -s /usr/bin/nodejs /usr/bin/node
