@@ -17,16 +17,9 @@ RUN apt-get install -y default-jdk \
                        lib32stdc++6 \
                        lib32z1 \
                        ruby \
-                       gcc \
-                       make \
-                       build-essential \
-                       g++ \
-                       ruby-dev \
-                       rubygems \
     && apt-get clean
 
 RUN npm install -g react-native-cli yarn && npm cache clean -g
-RUN gem install fastlane
 
 RUN wget --quiet --output-document=android-sdk.tgz https://dl.google.com/android/android-sdk_r${ANDROID_SDK_TOOLS}-linux.tgz && \
     tar --extract --gzip --file=android-sdk.tgz && \
@@ -42,4 +35,3 @@ RUN echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all -
 
 ENV ANDROID_HOME=$PWD/android-sdk-linux
 ENV PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
-RUN ln -s /usr/bin/nodejs /usr/bin/node
