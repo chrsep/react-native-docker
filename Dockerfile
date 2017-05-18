@@ -33,4 +33,5 @@ RUN echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all -
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter platform-tools && \
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter build-tools-${ANDROID_BUILD_TOOLS} && \
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter build-tools-25.0.2 && \
-          echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-google_play_services 
+          echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-android-m2repository && \
+          echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-google_play_services
