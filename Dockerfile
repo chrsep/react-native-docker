@@ -30,6 +30,7 @@ RUN wget --quiet --output-document=android-sdk.tgz https://dl.google.com/android
     rm android-sdk.tgz -fr
 
 RUN echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter android-${ANDROID_COMPILE_SDK} && \
+          echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter android-25 && \
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter platform-tools && \
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter build-tools-${ANDROID_BUILD_TOOLS} && \
           echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter build-tools-25.0.2 && \
